@@ -1,9 +1,21 @@
-# PDFDancer Client TypeScript Examples
+<div align="center">
 
-This repository mirrors the Python example suite with idiomatic TypeScript/Node
-scripts powered by [`pdfdancer-client-typescript`](../pdfdancer-client-typescript/_main).
-Each file focuses on a single workflow—inspect, edit, or export PDF content—so
-you can copy snippets directly into your projects.
+# PDFDancer TypeScript Examples
+
+<img src="media/logo-orange-512h.webp" alt="PDFDancer logo" width="120">
+
+</div>
+
+**Stop fighting PDFs. Start editing them.**
+
+**Edit text in any real-world PDF. Even ones you didn't create.**
+
+This repository contains working TypeScript/Node examples built on
+[`pdfdancer-client-typescript`](../pdfdancer-client-typescript/_main). Each
+script focuses on a single workflow—inspect, edit, or export PDF content—so you
+can copy snippets straight into your own projects and ship faster with working
+code examples. The examples run against real-world sample PDFs in `examples/`,
+so you can see how PDFDancer behaves on documents you didn’t generate yourself.
 
 ## Prerequisites
 
