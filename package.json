@@ -7,12 +7,12 @@
     "example": "tsx",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "pdfdancer-client-typescript": "file:../pdfdancer-client-typescript/_main"
-  },
   "devDependencies": {
     "@types/node": "^20.11.0",
     "tsx": "^4.7.0",
     "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "pdfdancer-client-typescript": "^1.0.17"
   }
 }
