@@ -67,6 +67,7 @@ summaries.
 
 ## Helpful Links
 
+- API Docs: https://docs.pdfdancer.com
 - npm: https://www.npmjs.com/package/pdfdancer-client-typescript
-- Issue tracker and feature requests: https://github.com/theflyingcodr/pdfdancer
-- PDFDancer product overview: https://pdfdancer.com
+- Issue tracker and feature requests: https://github.com/MenschMachine/pdfdancer
+- PDFDancer product overview: https://www.pdfdancer.com
