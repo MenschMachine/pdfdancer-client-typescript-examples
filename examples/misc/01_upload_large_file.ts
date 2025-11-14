@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { ensureParentDirectory, openPdfFromPath, LARGE_SAMPLE_PATH } from '../shared';
 
-const OUTPUT_PATH = path.resolve('large-file.pdf');
-const UPLOAD_TIMEOUT_MS = 120_000;
+const OUTPUT_PATH = path.resolve('output/misc/large-file.pdf');
+const UPLOAD_TIMEOUT_MS = 300_000; // 5 minutes for large file uploads
 
 export async function runExample(
   pdfPath: string = LARGE_SAMPLE_PATH,

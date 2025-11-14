@@ -32,5 +32,5 @@ export async function openPdfFromPath(
 ): Promise<PDFDancer> {
   await ensureFileExists(pdfPath, 'PDF file');
   const pdfBytes = await readFile(pdfPath);
-  return PDFDancer.open(pdfBytes, options.token, options.baseUrl, options.timeout);
+  return PDFDancer.open(new Uint8Array(pdfBytes), options.token, options.baseUrl, options.timeout);
 }

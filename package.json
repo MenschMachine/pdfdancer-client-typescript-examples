@@ -4,7 +4,7 @@
   "private": true,
   "description": "Bite-sized TypeScript examples for the pdfdancer-client-typescript SDK.",
   "scripts": {
-    "example": "tsx",
+    "example": "find examples -name '*.ts' ! -name 'shared.ts' | sort | xargs -I {} sh -c 'echo \"Running {}...\" && tsx {}'",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
