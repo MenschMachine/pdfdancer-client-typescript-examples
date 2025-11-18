@@ -33,8 +33,8 @@ jobs:
 
       - name: Run all examples
         env:
-          PDFDANCER_TOKEN: ${{ secrets.PDFDANCER_TOKEN }}
-          PDFDANCER_BASE_URL: ${{ secrets.PDFDANCER_BASE_URL }}
+          PDFDANCER_TOKEN: 42
+          PDFDANCER_BASE_URL: https://api-staging.pdfdancer.com
         run: npm run example
 
       - name: Upload output artifacts
