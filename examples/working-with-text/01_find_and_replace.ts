@@ -11,7 +11,7 @@ export async function runExample(
   paragraphPrefix: string = PARAGRAPH_PREFIX
 ): Promise<void> {
   const pdf = await openPdfFromPath(pdfPath);
-  const matches = await pdf.page(0).selectParagraphsStartingWith(paragraphPrefix);
+  const matches = await pdf.page(0).selectParagraphsMatching(paragraphPrefix);
   if (!matches.length) {
     throw new Error(`No paragraphs found starting with "${paragraphPrefix}".`);
   }
