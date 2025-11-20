@@ -35,10 +35,15 @@ jobs:
     runs-on: ${{ needs.select-random-config.outputs.os }}
 
     steps:
+      - name: 🎲 Testing with ${{ needs.select-random-config.outputs.os }} + Node ${{ needs.select-random-config.outputs.node-version }}
+        run: |
+          echo "Operating System: ${{ needs.select-random-config.outputs.os }}"
+          echo "Node Version: ${{ needs.select-random-config.outputs.node-version }}"
+
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node.js ${{ needs.select-random-config.outputs.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ needs.select-random-config.outputs.node-version }}
@@ -50,7 +55,7 @@ jobs:
       - name: Run typecheck
         run: npm run typecheck
 
-      - name: Run all examples
+      - name: Run all examples (${{ needs.select-random-config.outputs.os }})
         env:
           PDFDANCER_TOKEN: 42
           PDFDANCER_BASE_URL: https://api-staging.pdfdancer.com
