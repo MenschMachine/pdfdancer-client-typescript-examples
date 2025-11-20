@@ -4,7 +4,7 @@
   "private": true,
   "description": "Bite-sized TypeScript examples for the pdfdancer-client-typescript SDK.",
   "scripts": {
-    "example": "find examples -name '*.ts' ! -name 'shared.ts' | sort | while read file; do echo \"Running $file...\" && tsx \"$file\" || exit 1; done",
+    "example": "node scripts/run-examples.js",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
