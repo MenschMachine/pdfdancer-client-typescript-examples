@@ -13,6 +13,6 @@
     "typescript": "^5.4.0"
   },
   "dependencies": {
-    "pdfdancer-client-typescript": "^1.0.21"
+    "pdfdancer-client-typescript": "^1.0.22"
   }
 }
