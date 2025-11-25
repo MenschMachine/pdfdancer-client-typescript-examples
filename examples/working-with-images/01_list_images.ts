@@ -17,8 +17,8 @@ export async function runExample(pdfPath: string = SHOWCASE_PATH): Promise<void>
     const x = position.getX();
     const y = position.getY();
     const coords = x !== undefined && y !== undefined ? `(${x.toFixed(1)}, ${y.toFixed(1)})` : '(unknown coordinates)';
-    const pageIndex = position.pageIndex ?? '?';
-    console.log(`- Page ${pageIndex}: ${coords} — ${size}`);
+    const pageNumber = position.pageNumber ?? '?';
+    console.log(`- Page ${pageNumber}: ${coords} — ${size}`);
   }
 }
 

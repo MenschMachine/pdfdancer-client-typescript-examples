@@ -9,7 +9,7 @@ export async function runExample(
   outputPath: string = OUTPUT_PATH
 ): Promise<void> {
   const pdf = await openPdfFromPath(pdfPath);
-  const images = await pdf.page(0).selectImages();
+  const images = await pdf.page(1).selectImages();
   if (!images.length) {
     throw new Error('No images found on page 0 to move.');
   }

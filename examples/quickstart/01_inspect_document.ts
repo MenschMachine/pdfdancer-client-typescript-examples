@@ -36,7 +36,7 @@ export async function runExample(pdfPath: string = SHOWCASE_PATH): Promise<void>
 
   console.log('\nFirst Page Details');
   console.log('------------------');
-  console.log(`Page index: ${firstPage.position.pageIndex ?? 0}`);
+  console.log(`Page number: ${firstPage.position.pageNumber ?? 0}`);
   console.log(`Paragraphs on page: ${pageParagraphs.length}`);
   console.log(`Images on page: ${pageImages.length}`);
   console.log(`Form fields on page: ${pageFormFields.length}`);

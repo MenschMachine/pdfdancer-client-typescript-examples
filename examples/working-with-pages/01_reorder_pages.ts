@@ -2,26 +2,26 @@ import path from 'node:path';
 import { ensureParentDirectory, openPdfFromPath, SHOWCASE_PATH } from '../shared';
 
 const OUTPUT_PATH = path.resolve('output/working-with-pages/reordered.pdf');
-const SOURCE_INDEX = 0;
-const DEST_INDEX = 2;
+const SOURCE_NUMBER = 1;
+const DEST_NUMBER = 3;
 
 export async function runExample(
   pdfPath: string = SHOWCASE_PATH,
   outputPath: string = OUTPUT_PATH,
-  sourceIndex: number = SOURCE_INDEX,
-  destIndex: number = DEST_INDEX
+  sourcePage: number = SOURCE_NUMBER,
+  destPage: number = DEST_NUMBER
 ): Promise<void> {
   const pdf = await openPdfFromPath(pdfPath);
   const pages = await pdf.pages();
-  if (sourceIndex >= pages.length) {
-    throw new Error(`Source index ${sourceIndex} out of range.`);
+  if (sourcePage > pages.length) {
+    throw new Error(`Source page ${sourcePage} out of range.`);
   }
 
-  await pdf.movePage(sourceIndex, destIndex);
+  await pdf.movePage(sourcePage, destPage);
 
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);
-  console.log(`Moved page ${sourceIndex} to position ${destIndex}. Saved PDF to ${outputPath}.`);
+  console.log(`Moved page ${sourcePage} to position ${destPage}. Saved PDF to ${outputPath}.`);
 }
 
 if (require.main === module) {
