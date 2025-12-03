@@ -34,12 +34,12 @@ export PDFDANCER_TOKEN=your-token-here
 export PDFDANCER_BASE_URL=https://api.pdfdancer.com
 ```
 
-Run any script with `tsx` via the provided helper:
+Run any script directly with `npx tsx`:
 
 ```bash
-npm run example -- examples/quickstart/01_inspect_document.ts
-npm run example -- examples/working-with-text/02_redact_phrases.ts
-npm run example -- examples/working-with-pages/04_add_blank_page.ts
+npx tsx examples/quickstart/01_inspect_document.ts
+npx tsx examples/working-with-text/02_redact_phrases.ts
+npx tsx examples/redaction/01_redact_text_and_image.ts
 ```
 
 Every script exports an async `runExample()` function, so you can also import
@@ -58,6 +58,7 @@ await runExample();
 - `examples/working-with-pages/` – reorder, extract, delete, or append pages.
 - `examples/forms/` – enumerate, fill, toggle, and clear AcroForm fields.
 - `examples/working-with-images/` – list, move, or delete page images.
+- `examples/redaction/` – permanently redact text and images from PDFs.
 - `examples/misc/01_upload_large_file.ts` – benchmark upload/save times for a large PDF.
 - `output/` – destination for generated PDFs and text exports.
 - `logs/` – HTTP traces emitted by the SDK when `PDFDANCER_CLIENT_DEBUG=1`.
