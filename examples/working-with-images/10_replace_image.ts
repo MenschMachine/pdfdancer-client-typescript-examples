@@ -1,13 +1,13 @@
 import path from 'node:path';
 import {readFile} from 'node:fs/promises';
-import {ensureParentDirectory, LOGO_PATH, openPdfFromPath, SHOWCASE_PATH} from '../shared';
+import {ensureParentDirectory, EXPERIMENT_PATH, openPdfFromPath, SHOWCASE_PATH} from '../shared';
 
 const OUTPUT_PATH = path.resolve('output/working-with-images/replaced_image.pdf');
 
 export async function runExample(
     pdfPath: string = SHOWCASE_PATH,
     outputPath: string = OUTPUT_PATH,
-    replacementImagePath: string = LOGO_PATH
+    replacementImagePath: string = EXPERIMENT_PATH
 ): Promise<void> {
     const pdf = await openPdfFromPath(pdfPath);
     const images = await pdf.page(1).selectImages();
@@ -15,8 +15,15 @@ export async function runExample(
         throw new Error('No images found on page 1 to replace.');
     }
 
-    const replacementBytes = await readFile(replacementImagePath);
-    await images[0].replace(replacementBytes);
+    // Read the replacement image file
+    const imageData = await readFile(replacementImagePath);
+
+    // Replace the first image with the new image data
+    // Note: The library accepts raw image bytes directly
+    const result = await images[0].replace(imageData as any);
+    if (!result) {
+        throw new Error('Image replacement returned false');
+    }
 
     await ensureParentDirectory(outputPath);
     await pdf.save(outputPath);

@@ -1,25 +1,29 @@
 import path from 'node:path';
-import { FlipDirection } from 'pdfdancer-client-typescript';
 import { ensureParentDirectory, openPdfFromPath, SHOWCASE_PATH } from '../shared';
 
-const OUTPUT_PATH = path.resolve('output/working-with-images/flipped_image.pdf');
+const OUTPUT_PATH = path.resolve('output/working-with-images/scaled_to_size.pdf');
 
 export async function runExample(
   pdfPath: string = SHOWCASE_PATH,
   outputPath: string = OUTPUT_PATH,
-  direction: FlipDirection = FlipDirection.HORIZONTAL
+  width: number = 200,
+  height: number = 150,
+  preserveAspectRatio: boolean = true
 ): Promise<void> {
   const pdf = await openPdfFromPath(pdfPath);
   const images = await pdf.page(1).selectImages();
   if (!images.length) {
-    throw new Error('No images found on page 1 to flip.');
+    throw new Error('No images found on page 1 to scale.');
   }
 
-  await images[0].flip(direction);
+  // Scale to specific dimensions
+  await images[0].scaleTo(width, height, preserveAspectRatio);
 
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);
-  console.log(`Flipped first image on page 1 ${direction} and saved to ${outputPath}.`);
+  console.log(
+    `Scaled first image on page 1 to ${width}x${height} (preserveAspectRatio: ${preserveAspectRatio}) and saved to ${outputPath}.`
+  );
 }
 
 if (require.main === module) {
