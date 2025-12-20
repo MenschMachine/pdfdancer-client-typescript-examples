@@ -30,8 +30,6 @@ so you can see how PDFDancer behaves on documents you didn’t generate yourself
 npm install
 
 export PDFDANCER_TOKEN=your-token-here
-# optionally customise the API endpoint
-export PDFDANCER_BASE_URL=https://api.pdfdancer.com
 ```
 
 Run any script directly with `npx tsx`:
