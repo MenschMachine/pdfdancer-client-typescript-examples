@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { Color, Font, TemplateReplacement, TemplateReplaceRequest } from 'pdfdancer-client-typescript';
+import { Color, PDFDancer } from 'pdfdancer-client-typescript';
 import { ensureParentDirectory, openPdfFromPath } from '../shared';
 
 const TEMPLATE_PATH = path.resolve('examples/templating/template.pdf');
@@ -12,14 +12,11 @@ export async function runExample(
   const pdf = await openPdfFromPath(templatePath);
 
   // Fill with custom font and color
-  await pdf.applyReplacements(new TemplateReplaceRequest([
-    new TemplateReplacement(
-      '{{HIGHLIGHT}}',
-      'Important Text',
-      new Font('Helvetica-Bold', 14),
-      new Color(255, 0, 0)
-    ),
-  ]));
+  await pdf
+    .replace('{{HIGHLIGHT}}', 'Important Text')
+    .font('Helvetica-Bold', 14)
+    .color(new Color(255, 0, 0))
+    .apply();
 
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);

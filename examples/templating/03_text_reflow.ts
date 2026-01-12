@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { ReflowPreset, TemplateReplacement, TemplateReplaceRequest } from 'pdfdancer-client-typescript';
+import { PDFDancer } from 'pdfdancer-client-typescript';
 import { ensureParentDirectory, openPdfFromPath } from '../shared';
 
 const TEMPLATE_PATH = path.resolve('examples/templating/template.pdf');
@@ -12,11 +12,10 @@ export async function runExample(
   const pdf = await openPdfFromPath(templatePath);
 
   // Use BEST_EFFORT reflow for longer replacement text
-  await pdf.applyReplacements(new TemplateReplaceRequest(
-    [new TemplateReplacement('{{SHORT}}', 'This is a much longer replacement text that may need reflowing')],
-    undefined,
-    ReflowPreset.BEST_EFFORT
-  ));
+  await pdf
+    .replace('{{SHORT}}', 'This is a much longer replacement text that may need reflowing')
+    .bestEffort()
+    .apply();
 
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);

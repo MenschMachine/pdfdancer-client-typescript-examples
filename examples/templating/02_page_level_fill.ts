@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { TemplateReplacement, TemplateReplaceRequest } from 'pdfdancer-client-typescript';
+import { PDFDancer } from 'pdfdancer-client-typescript';
 import { ensureParentDirectory, openPdfFromPath } from '../shared';
 
 const TEMPLATE_PATH = path.resolve('examples/templating/template.pdf');
@@ -11,17 +11,17 @@ export async function runExample(
 ): Promise<void> {
   const pdf = await openPdfFromPath(templatePath);
 
-  // Fill placeholders only on page 1 (index 0)
-  await pdf.applyReplacements(new TemplateReplaceRequest(
-    [new TemplateReplacement('{{HEADER}}', 'Welcome')],
-    0
-  ));
+  // Fill placeholders only on page 1
+  await pdf
+    .replace('{{HEADER}}', 'Welcome')
+    .onPage(1)
+    .apply();
 
-  // Fill placeholders only on page 2 (index 1)
-  await pdf.applyReplacements(new TemplateReplaceRequest(
-    [new TemplateReplacement('{{HEADER}}', 'Details')],
-    1
-  ));
+  // Fill placeholders only on page 2
+  await pdf
+    .replace('{{HEADER}}', 'Details')
+    .onPage(2)
+    .apply();
 
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);

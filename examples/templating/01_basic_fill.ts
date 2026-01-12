@@ -1,32 +1,26 @@
 import path from 'node:path';
-import { TemplateReplacement, TemplateReplaceRequest } from 'pdfdancer-client-typescript';
+import { PDFDancer } from 'pdfdancer-client-typescript';
 import { ensureParentDirectory, openPdfFromPath } from '../shared';
 
 const TEMPLATE_PATH = path.resolve('examples/templating/template.pdf');
 const OUTPUT_PATH = path.resolve('output/templating/basic_fill.pdf');
 
-const REPLACEMENTS: Record<string, string> = {
-  '{{NAME}}': 'John Doe',
-  '{{DATE}}': 'January 7, 2026',
-  '{{COMPANY}}': 'Acme Corp'
-};
-
 export async function runExample(
   templatePath: string = TEMPLATE_PATH,
-  outputPath: string = OUTPUT_PATH,
-  replacements: Record<string, string> = REPLACEMENTS
+  outputPath: string = OUTPUT_PATH
 ): Promise<void> {
   const pdf = await openPdfFromPath(templatePath);
 
-  const templateReplacements = Object.entries(replacements).map(
-    ([placeholder, text]) => new TemplateReplacement(placeholder, text)
-  );
-
-  await pdf.applyReplacements(new TemplateReplaceRequest(templateReplacements));
+  // Fill placeholders using fluent API
+  await pdf
+    .replace('{{NAME}}', 'John Doe')
+    .and('{{DATE}}', 'January 12, 2026')
+    .and('{{COMPANY}}', 'Acme Corp')
+    .apply();
 
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);
-  console.log(`Filled ${templateReplacements.length} placeholders and saved to ${outputPath}`);
+  console.log(`Filled placeholders and saved to ${outputPath}`);
 }
 
 if (require.main === module) {
