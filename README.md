@@ -2,11 +2,11 @@
 
 # PDFDancer TypeScript Examples
 
-<img src="media/logo-orange-512h.webp" alt="PDFDancer logo" width="120">
+<img src="media/logo-silver-512h.webp" alt="PDFDancer logo" width="120">
 
 </div>
 
-**Stop fighting PDFs. Start editing them.**
+## PDF used to be read-only. We fixed that.
 
 **Edit text in any real-world PDF. Even ones you didn't create.**
 
@@ -64,9 +64,9 @@ await runExample();
 See the README inside each `examples/<category>/` directory for per-file
 summaries.
 
-## Helpful Links
+## Helpful links
 
-- API Docs: https://docs.pdfdancer.com
-- npm: https://www.npmjs.com/package/pdfdancer-client-typescript
-- Issue tracker and feature requests: https://github.com/MenschMachine/pdfdancer
-- PDFDancer product overview: https://www.pdfdancer.com
+- [API documentation](https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
+- [Product overview](https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
+- [npm](https://www.npmjs.com/package/pdfdancer-client-typescript)
+- [Issue tracker](https://github.com/MenschMachine/pdfdancer)
