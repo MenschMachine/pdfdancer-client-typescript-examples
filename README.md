@@ -69,4 +69,6 @@ summaries.
 - [API documentation](https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
 - [Product overview](https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
 - [npm](https://www.npmjs.com/package/pdfdancer-client-typescript)
+- [Changelog](https://www.pdfdancer.com/changelog/?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
+- [Status](https://status.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
 - [Issue tracker](https://github.com/MenschMachine/pdfdancer)
