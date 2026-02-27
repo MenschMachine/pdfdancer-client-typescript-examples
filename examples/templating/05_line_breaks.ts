@@ -31,9 +31,18 @@ export async function runExample(
     await pdf
         .replace(
             '{{DESCRIPTION}}',
-            'PDFDancer supports explicit line breaks in\n replacement text.'
+            'PDFDancer supports explicit line breaks in\nreplacement text.'
         )
+        .noReflow()
         .apply();
+
+    // After replacing, adjust line spacing on the resulting multi-line paragraph
+    const paragraphs = await pdf.page(1).selectParagraphsStartingWith('PDFDancer');
+    if (paragraphs.length > 0) {
+        await paragraphs[0].edit()
+            .lineSpacing(2.5)
+            .apply();
+    }
 
     await ensureParentDirectory(outputPath);
     await pdf.save(outputPath);
