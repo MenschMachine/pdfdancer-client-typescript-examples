@@ -6,6 +6,7 @@ import {PDFDancer} from 'pdfdancer-client-typescript';
 export const SHOWCASE_PATH = path.resolve('examples/Showcase.pdf');
 export const LOGO_PATH = path.resolve('examples/logo.png');
 export const EXPERIMENT_PATH = path.resolve('examples/experiment.png');
+export const BASIC_PATHS_PATH = path.resolve('examples/basic-paths.pdf');
 
 export interface OpenPdfOptions {
     token?: string;
