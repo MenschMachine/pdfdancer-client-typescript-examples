@@ -7,6 +7,7 @@ export const SHOWCASE_PATH = path.resolve('examples/Showcase.pdf');
 export const LOGO_PATH = path.resolve('examples/logo.png');
 export const EXPERIMENT_PATH = path.resolve('examples/experiment.png');
 export const BASIC_PATHS_PATH = path.resolve('examples/basic-paths.pdf');
+export const CLIPPING_TEST_PATH = path.resolve('examples/clipping/invisible-content-clipping-test.pdf');
 
 export interface OpenPdfOptions {
     token?: string;
