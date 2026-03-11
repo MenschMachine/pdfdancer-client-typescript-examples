@@ -13,6 +13,6 @@
     "typescript": "^5.4.0"
   },
   "dependencies": {
-    "pdfdancer-client-typescript": "github:MenschMachine/pdfdancer-client-typescript#834b4bc2ab3f2d19b64702d2a668ce2e96762fc1"
+    "pdfdancer-client-typescript": "github:MenschMachine/pdfdancer-client-typescript#3857eddb7463ffd733171c2bc57131920993823e"
   }
 }
