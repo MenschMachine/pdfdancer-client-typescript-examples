@@ -9,3 +9,5 @@ output
 *.tsbuildinfo
 .aider*
 /.claude
+/.last-message.txt
+/.propagate*md
