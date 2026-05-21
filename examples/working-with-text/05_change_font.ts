@@ -4,7 +4,7 @@ import {ensureParentDirectory, openPdfFromPath, SHOWCASE_PATH} from '../shared';
 const OUTPUT_PATH = path.resolve('output/working-with-text/bold_title.pdf');
 const PARAGRAPH_PREFIX = 'PDFDancer';
 const FONT_NAME = 'Helvetica-Bold';
-const FONT_SIZE = 24;
+const FONT_SIZE = 18;
 
 export async function runExample(
     pdfPath: string = SHOWCASE_PATH,

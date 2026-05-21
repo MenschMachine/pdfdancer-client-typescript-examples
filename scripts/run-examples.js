@@ -8,6 +8,8 @@ const { readdirSync, statSync } = require('fs');
 const { join, relative } = require('path');
 const { spawnSync } = require('child_process');
 
+const NPX_COMMAND = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+
 /**
  * Recursively find all .ts files in a directory
  */
@@ -44,9 +46,8 @@ function runExamples() {
     const relativePath = relative(process.cwd(), file);
     console.log(`Running ${relativePath}...`);
 
-    const result = spawnSync('npx', ['tsx', file], {
+    const result = spawnSync(NPX_COMMAND, ['tsx', file], {
       stdio: 'inherit',
-      shell: true, // Required for Windows to find npx
     });
 
     if (result.status !== 0) {

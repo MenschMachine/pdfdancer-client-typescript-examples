@@ -2,6 +2,7 @@ import path from 'node:path';
 import { ensureParentDirectory, openPdfFromPath, SHOWCASE_PATH } from '../shared';
 
 const OUTPUT_PATH = path.resolve('output/working-with-images/cropped_image.pdf');
+const TARGET_PAGE = 3;
 
 export async function runExample(
   pdfPath: string = SHOWCASE_PATH,
@@ -14,9 +15,9 @@ export async function runExample(
   }
 ): Promise<void> {
   const pdf = await openPdfFromPath(pdfPath);
-  const images = await pdf.page(1).selectImages();
+  const images = await pdf.page(TARGET_PAGE).selectImages();
   if (!images.length) {
-    throw new Error('No images found on page 1 to crop.');
+    throw new Error(`No images found on page ${TARGET_PAGE} to crop.`);
   }
 
   await images[0].crop(cropPixels.left, cropPixels.top, cropPixels.right, cropPixels.bottom);
@@ -24,7 +25,7 @@ export async function runExample(
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);
   console.log(
-    `Cropped first image on page 1 by ${cropPixels.left}px left, ${cropPixels.top}px top, ${cropPixels.right}px right, ${cropPixels.bottom}px bottom and saved to ${outputPath}.`
+    `Cropped first image on page ${TARGET_PAGE} by ${cropPixels.left}px left, ${cropPixels.top}px top, ${cropPixels.right}px right, ${cropPixels.bottom}px bottom and saved to ${outputPath}.`
   );
 }
 

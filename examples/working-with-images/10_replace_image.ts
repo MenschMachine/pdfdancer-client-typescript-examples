@@ -1,33 +1,33 @@
 import path from 'node:path';
 import {readFile} from 'node:fs/promises';
-import {ensureParentDirectory, EXPERIMENT_PATH, openPdfFromPath, SHOWCASE_PATH} from '../shared';
+import {Image} from 'pdfdancer-client-typescript';
+import {ensureParentDirectory, openPdfFromPath, REPLACEMENT_LOGO_PATH, SHOWCASE_PATH} from '../shared';
 
 const OUTPUT_PATH = path.resolve('output/working-with-images/replaced_image.pdf');
+const TARGET_PAGE = 3;
 
 export async function runExample(
     pdfPath: string = SHOWCASE_PATH,
     outputPath: string = OUTPUT_PATH,
-    replacementImagePath: string = EXPERIMENT_PATH
+    replacementImagePath: string = REPLACEMENT_LOGO_PATH
 ): Promise<void> {
     const pdf = await openPdfFromPath(pdfPath);
-    const images = await pdf.page(1).selectImages();
+    const images = await pdf.page(TARGET_PAGE).selectImages();
     if (!images.length) {
-        throw new Error('No images found on page 1 to replace.');
+        throw new Error(`No images found on page ${TARGET_PAGE} to replace.`);
     }
 
-    // Read the replacement image file
     const imageData = await readFile(replacementImagePath);
+    const replacementImage = new Image(undefined, 'png', undefined, undefined, new Uint8Array(imageData));
 
-    // Replace the first image with the new image data
-    // Note: The library accepts raw image bytes directly
-    const result = await images[0].replace(imageData as any);
-    if (!result) {
-        throw new Error('Image replacement returned false');
+    const result = await images[0].replace(replacementImage);
+    if (!result.success) {
+        throw new Error(result.message ?? 'Image replacement failed');
     }
 
     await ensureParentDirectory(outputPath);
     await pdf.save(outputPath);
-    console.log(`Replaced first image on page 1 with ${replacementImagePath} and saved to ${outputPath}.`);
+    console.log(`Replaced first image on page ${TARGET_PAGE} with ${replacementImagePath} and saved to ${outputPath}.`);
 }
 
 if (require.main === module) {
