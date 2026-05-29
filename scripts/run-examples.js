@@ -48,7 +48,12 @@ function runExamples() {
 
     const result = spawnSync(NPX_COMMAND, ['tsx', file], {
       stdio: 'inherit',
+      shell: process.platform === 'win32',
     });
+
+    if (result.error) {
+      console.error(result.error);
+    }
 
     if (result.status !== 0) {
       console.error(`\n❌ Failed to run ${relativePath}`);
