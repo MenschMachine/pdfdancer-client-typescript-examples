@@ -6,72 +6,117 @@
 
 </div>
 
-## PDF used to be read-only. We fixed that.
+Examples for editing and inspecting existing PDF documents with the
+[`pdfdancer-client-typescript`](https://github.com/MenschMachine/pdfdancer-client-typescript)
+SDK.
 
-**Edit text in any real-world PDF. Even ones you didn't create.**
+The repository contains runnable TypeScript programs for common PDF workflows:
+text, images, pages, vector paths, forms, and advanced selectors. Each example
+uses a fixture in `examples/` and writes generated documents to `output/` when
+it performs a mutation.
 
-This repository contains working TypeScript/Node examples built on
-[`pdfdancer-client-typescript`](https://github.com/MenschMachine/pdfdancer-client-typescript). Each
-script focuses on a single workflow—inspect, edit, or export PDF content—so you
-can copy snippets straight into your own projects and ship faster with working
-code examples. The examples run against real-world sample PDFs in `examples/`,
-so you can see how PDFDancer behaves on documents you didn’t generate yourself.
+## Quick start
 
-## Prerequisites
+Requirements:
 
-- Node.js 20+
-- A PDFDancer API token (`PDFDANCER_TOKEN`)
-- (Optional) Custom API endpoint (`PDFDANCER_BASE_URL`, defaults to `https://api.pdfdancer.com`)
-- Local sample PDFs (`examples/Showcase.pdf`, `examples/logo.png`, and `examples/ISO 32000-2 FDIS.pdf` are included)
+- Node.js 20 or newer
+- A PDFDancer API token
 
-## Getting Started
+From the repository root:
 
 ```bash
 npm install
-
-export PDFDANCER_TOKEN=your-token-here
+export PDFDANCER_API_TOKEN=your-token-here
+npx tsx examples/working-with-text/01_replace_text_using_selector.ts
 ```
 
-Run any script directly with `npx tsx`:
+The example saves the result to
+`output/working-with-text/replaced_text.pdf`. Open that file to inspect the
+modified PDF.
+
+For PowerShell, set the token with:
+
+```powershell
+$env:PDFDANCER_API_TOKEN = "your-token-here"
+npx tsx examples/working-with-text/01_replace_text_using_selector.ts
+```
+
+All commands should be run from the repository root because the examples use
+repository-relative fixture paths.
+
+## Configuration
+
+The SDK reads these environment variables:
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `PDFDANCER_API_TOKEN` | Yes | Preferred API authentication variable. |
+| `PDFDANCER_TOKEN` | No | Legacy authentication variable, also supported. |
+| `PDFDANCER_BASE_URL` | No | API endpoint; defaults to `https://api.pdfdancer.com`. |
+| `PDFDANCER_CLIENT_DEBUG` | No | Set to `1` to enable SDK HTTP debug traces. |
+
+Two advanced examples use additional variables:
+
+- `PDFDANCER_FONT_PATH` supplies a font file to the font registration example.
+- `PDFDANCER_RUN_IMAGE_BUILDER=1` enables the optional image-builder operation
+  in the drawing-objects example.
+
+## Examples
+
+Start with the quick-start text replacement example, then browse the category
+indexes for focused workflows.
+
+- [Working with text](examples/working-with-text/README.md) — find, replace,
+  insert, delete, and style text using selectors.
+- [Working with images](examples/working-with-images/README.md) — inspect,
+  move, resize, rotate, crop, replace, and transform images.
+- [Working with pages](examples/working-with-pages/README.md) — reorder,
+  extract, delete, and add pages.
+- [Working with paths](examples/working-with-paths/README.md) — inspect,
+  group, move, resize, rotate, remove, and recolor vector paths.
+- [Working with forms](examples/forms/README.md) — inspect and mutate AcroForm
+  fields and checkbox widgets.
+- [Advanced capabilities](examples/capabilities/README.md) — create drawing
+  objects, use snapshots and coordinate selectors, register fonts, fill image
+  regions, group paths, and combine text operations.
+
+## Running examples
+
+Run an individual example with `npx tsx`:
 
 ```bash
-npx tsx examples/working-with-pages/02_extract_pages.ts
 npx tsx examples/working-with-images/01_list_images.ts
 ```
 
-Every script exports an async `runExample()` function, so you can also import
-them elsewhere:
+To run every TypeScript example in alphabetical order:
 
-```typescript
-import { runExample } from './examples/working-with-images/01_list_images';
-
-await runExample();
+```bash
+npm run example
 ```
 
-## Repository Layout
+The full suite requires a valid token and may include advanced examples with
+additional environment requirements. Individual category READMEs document
+their fixtures and output files.
 
-- `examples/working-with-pages/` – reorder, extract, delete, or append pages.
-- `examples/forms/` – enumerate and mutate AcroForm fields.
-- `examples/working-with-images/` – list, move, or delete page images.
-- `output/` – destination for generated PDFs and text exports.
-- `logs/` – HTTP traces emitted by the SDK when `PDFDANCER_CLIENT_DEBUG=1`.
+Check the TypeScript sources without contacting the API:
 
-See the README inside each `examples/<category>/` directory for per-file
-summaries.
+```bash
+npm run typecheck
+```
+
+## Repository layout
+
+- `examples/` — input PDFs, images, and runnable TypeScript examples.
+- `output/` — generated PDFs and other example results; created on demand and
+  ignored by Git.
+- `logs/` — optional SDK debug traces; ignored by Git.
+- `scripts/run-examples.js` — runner used by `npm run example`.
 
 ## Helpful links
 
 - [API documentation](https://docs.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
 - [Product overview](https://www.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
-- [npm](https://www.npmjs.com/package/pdfdancer-client-typescript)
+- [npm package](https://www.npmjs.com/package/pdfdancer-client-typescript)
 - [Changelog](https://www.pdfdancer.com/changelog/?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
 - [Status](https://status.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
 - [Issue tracker](https://github.com/MenschMachine/pdfdancer-client-typescript-examples/issues)
-
-The API-focused examples use behavior-based names: selector-based text
-replacement, deletion, insertion, and styling, plus chained image
-transformations and path color mutation.
-
-The `examples/capabilities/` directory additionally covers object creation,
-snapshots and coordinate selectors, font lookup/registration, image fill-region,
-path-group variants, and advanced text selectors.
