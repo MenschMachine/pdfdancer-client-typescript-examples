@@ -12,12 +12,12 @@ export async function runExample(
   checkedValue: string = CHECKED_VALUE
 ): Promise<void> {
   const pdf = await openPdfFromPath(pdfPath);
-  const matches = await pdf.selectFieldsByName(checkboxName);
+  const matches = await pdf.selectFormFieldsByName(checkboxName);
   if (!matches.length) {
     throw new Error(`No checkbox found with name '${checkboxName}'.`);
   }
 
-  await Promise.all(matches.map((field) => field.fill(checkedValue)));
+  await Promise.all(matches.map((field) => field.setValue(checkedValue)));
 
   await ensureParentDirectory(outputPath);
   await pdf.save(outputPath);

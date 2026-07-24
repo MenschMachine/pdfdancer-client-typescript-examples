@@ -11,7 +11,7 @@
 **Edit text in any real-world PDF. Even ones you didn't create.**
 
 This repository contains working TypeScript/Node examples built on
-[`pdfdancer-client-typescript`](../pdfdancer-client-typescript/_main). Each
+[`pdfdancer-client-typescript`](https://github.com/MenschMachine/pdfdancer-client-typescript). Each
 script focuses on a single workflow—inspect, edit, or export PDF content—so you
 can copy snippets straight into your own projects and ship faster with working
 code examples. The examples run against real-world sample PDFs in `examples/`,
@@ -35,9 +35,8 @@ export PDFDANCER_TOKEN=your-token-here
 Run any script directly with `npx tsx`:
 
 ```bash
-npx tsx examples/quickstart/01_inspect_document.ts
-npx tsx examples/working-with-text/02_redact_phrases.ts
-npx tsx examples/redaction/01_redact_text_and_image.ts
+npx tsx examples/working-with-pages/02_extract_pages.ts
+npx tsx examples/working-with-images/01_list_images.ts
 ```
 
 Every script exports an async `runExample()` function, so you can also import
@@ -51,13 +50,9 @@ await runExample();
 
 ## Repository Layout
 
-- `examples/quickstart/` – inspect Showcase.pdf and dump its text output.
-- `examples/working-with-text/` – replace, move, highlight, or watermark text.
 - `examples/working-with-pages/` – reorder, extract, delete, or append pages.
-- `examples/forms/` – enumerate, fill, toggle, and clear AcroForm fields.
+- `examples/forms/` – enumerate and mutate AcroForm fields.
 - `examples/working-with-images/` – list, move, or delete page images.
-- `examples/redaction/` – permanently redact text and images from PDFs.
-- `examples/misc/01_upload_large_file.ts` – benchmark upload/save times for a large PDF.
 - `output/` – destination for generated PDFs and text exports.
 - `logs/` – HTTP traces emitted by the SDK when `PDFDANCER_CLIENT_DEBUG=1`.
 
@@ -71,4 +66,12 @@ summaries.
 - [npm](https://www.npmjs.com/package/pdfdancer-client-typescript)
 - [Changelog](https://www.pdfdancer.com/changelog/?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
 - [Status](https://status.pdfdancer.com?utm_source=github&utm_medium=readme&utm_campaign=pdfdancer-ts-examples)
-- [Issue tracker](https://github.com/MenschMachine/pdfdancer)
+- [Issue tracker](https://github.com/MenschMachine/pdfdancer-client-typescript-examples/issues)
+
+The API-focused examples use behavior-based names: selector-based text
+replacement, deletion, insertion, and styling, plus chained image
+transformations and path color mutation.
+
+The `examples/capabilities/` directory additionally covers object creation,
+snapshots and coordinate selectors, font lookup/registration, image fill-region,
+path-group variants, and advanced text selectors.

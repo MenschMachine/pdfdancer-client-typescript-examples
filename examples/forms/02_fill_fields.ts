@@ -16,13 +16,13 @@ export async function runExample(
   const pdf = await openPdfFromPath(pdfPath);
 
   for (const [name, value] of Object.entries(updates)) {
-    const matches = await pdf.selectFieldsByName(name);
+    const matches = await pdf.selectFormFieldsByName(name);
     if (!matches.length) {
       console.log(`Skipping '${name}' — field not found`);
       continue;
     }
 
-    await Promise.all(matches.map((field) => field.fill(value)));
+    await Promise.all(matches.map((field) => field.setValue(value)));
   }
 
   await ensureParentDirectory(outputPath);

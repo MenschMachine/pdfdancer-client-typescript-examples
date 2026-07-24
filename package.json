@@ -1,8 +1,20 @@
 {
   "name": "pdfdancer-client-typescript-examples",
   "version": "0.1.0",
-  "private": true,
   "description": "Bite-sized TypeScript examples for the pdfdancer-client-typescript SDK.",
+  "license": "Apache-2.0",
+  "author": "The Famous Cat Ltd.",
+  "homepage": "https://github.com/MenschMachine/pdfdancer-client-typescript-examples#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MenschMachine/pdfdancer-client-typescript-examples.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MenschMachine/pdfdancer-client-typescript-examples/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "example": "node scripts/run-examples.js",
     "typecheck": "tsc --noEmit"
@@ -13,6 +25,6 @@
     "typescript": "^5.4.0"
   },
   "dependencies": {
-    "pdfdancer-client-typescript": "2.0.15"
+    "pdfdancer-client-typescript": "3.0.0"
   }
 }

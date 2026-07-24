@@ -13,11 +13,11 @@ export async function runExample(
 
     for (const field of fields) {
         if (field.type === ObjectType.CHECKBOX || field.type === ObjectType.RADIO_BUTTON) {
-            await field.fill('Off');
+            await field.setValue('Off');
         } else if (field.type === ObjectType.BUTTON) {
             // nothing to do
         } else {
-            await field.fill('');
+            await field.setValue('');
         }
     }
 
